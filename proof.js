@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 const glob = require("glob");
 
 function run() {
-    glob("test/*_jonjordion.js", function (er, files) {
+    glob("test/*_proof.js", function (er, files) {
         files.forEach(file => {
             const fixtures = require(`./${file}`);
 
