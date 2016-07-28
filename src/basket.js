@@ -1,5 +1,11 @@
-"use strict";
+exports.sum = values => {
+    let sum = 0;
+    values.forEach(element =>
+        sum += element
+    );
+    return sum;
+};
 
-function total(basket) {
-    return null;
-}
+exports.sub = (a, b) => {
+    return a - b;
+};

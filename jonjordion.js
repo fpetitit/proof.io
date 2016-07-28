@@ -1,23 +1,36 @@
-let fs = require('fs');
-let cheerio = require('cheerio');
+const fs = require('fs');
+const cheerio = require('cheerio');
+const glob = require("glob");
 
 function run() {
-    var contents = fs.readFileSync('./test/basket_jonjordion.html').toString();
-    let $ = cheerio.load(contents);
+    glob("test/*_jonjordion.js", function (er, files) {
+        files.forEach(file => {
+            const fixtures = require(`./${file}`);
 
-    let rows = $('tr');
-    rows.map(function (i, el) {
-        let firstValue = $(this).find('td').eq(0).html();
-        let secondValue = $(this).find('td').eq(1).html();
-        let expected = $(this).find('td').eq(2).html();
-        if (Number(expected) === (Number(firstValue) + Number(secondValue))) {
-            $(this).find('td').eq(2).css('background-color', "green");
-        } else {
-            $(this).find('td').eq(2).css('background-color', "red");
-        }
+            var contents = fs.readFileSync(`./${file.substr(0, file.lastIndexOf("."))}.html`).toString();
+            let $ = cheerio.load(contents);
+
+            let rows = $('tr');
+            rows.map(function () {
+                let functionToExecute = $(this).parent().data('execute');
+                let args = [];
+                const columns = $(this).find('td');
+                for (let i = 0; i < columns.length - 1; i++) {
+                    args.push($(this).find('td').eq(i).text());
+                }
+                const expected = $(this).find('td').eq(columns.length - 1).text();
+                const result = fixtures[functionToExecute](args);
+                if (expected == result) {
+                    $(this).find('td').eq(columns.length - 1).css('background-color', "green");
+                } else {
+                    $(this).find('td').eq(columns.length - 1).css('background-color', "red");
+                    $(this).find('td').eq(columns.length - 1).text(`expected ${expected } but was ${result}`);
+                }
+            });
+
+            fs.writeFileSync(`./${file.substr(0, file.lastIndexOf("."))}_result.html`, $.html());
+        })
     });
-
-    fs.writeFileSync('./test/basket_jonjordion_result.html', $.html());
 }
 
 run();
