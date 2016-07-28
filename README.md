@@ -18,7 +18,7 @@ https://github.com/fpetitit/proof-demo.
 
 ## Contributors
 
-@francoispetitit
+https://twitter.com/@francoispetitit
 
 ## License
 
