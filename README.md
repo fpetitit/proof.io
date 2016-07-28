@@ -5,7 +5,7 @@ It is especially inspired by http://concordion.org, a great bdd testing tool for
 
 ## Code Example
 
-![An example of the result](https://dl.dropboxusercontent.com/u/1947183/proof-test-1.png =250x)
+![An example of the result](https://dl.dropboxusercontent.com/u/1947183/proof-test-1.png)
 
 ## Installation
 
