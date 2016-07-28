@@ -1,13 +1,15 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 const glob = require("glob");
+const path = require('path');
+const appDir = path.dirname(require.main.filename);
 
-function run() {
-    glob("test/*_proof.js", function (er, files) {
+generateTestsResults = function() {
+    glob(`${appDir}/*/*_proof.js`, function (er, files) {
         files.forEach(file => {
-            const fixtures = require(`./${file}`);
+            const fixtures = require(`${file}`);
 
-            var contents = fs.readFileSync(`./${file.substr(0, file.lastIndexOf("."))}.html`).toString();
+            var contents = fs.readFileSync(`${file.substr(0, file.lastIndexOf("."))}.html`).toString();
             let $ = cheerio.load(contents);
 
             let rows = $('tr');
@@ -28,9 +30,9 @@ function run() {
                 }
             });
 
-            fs.writeFileSync(`./${file.substr(0, file.lastIndexOf("."))}_result.html`, $.html());
+            fs.writeFileSync(`${file.substr(0, file.lastIndexOf("."))}_result.html`, $.html());
         })
     });
-}
+};
 
-run();
+generateTestsResults();
