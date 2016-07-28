@@ -1,10 +1,12 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 const glob = require("glob");
+
+//note : the npm main command must be run from the project root
 const appDir = process.cwd();
 
-generateTestsResults = function() {
-    glob(`${appDir}/*/*_proof.js`, function (er, files) {
+const generateTestsResults = function() {
+    glob(`${appDir}/**/*_proof.js`, function (er, files) {
         files.forEach(file => {
             const fixtures = require(`${file}`);
 
