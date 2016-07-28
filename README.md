@@ -1,11 +1,11 @@
 ## Synopsis
 
-Proof.io is a tool to help you test your code by generating visual result easy to understand, both for developers and for non technical persons.
-It is expecially inspired by http://concordion.org.
+Proof.io is a tool to help you test your code by generating visual results easy to understand, both for developers and for non technical persons.
+It is especially inspired by http://concordion.org, a great bdd testing tool for Java.
 
 ## Code Example
 
-![An example of the result](https://dl.dropboxusercontent.com/u/1947183/proof-test-1.png)
+![An example of the result](https://dl.dropboxusercontent.com/u/1947183/proof-test-1.png =250x)
 
 ## Installation
 
