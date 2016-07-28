@@ -1,8 +1,7 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 const glob = require("glob");
-const path = require('path');
-const appDir = path.dirname(require.main.filename);
+const appDir = process.cwd();
 
 generateTestsResults = function() {
     glob(`${appDir}/*/*_proof.js`, function (er, files) {

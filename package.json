@@ -7,7 +7,7 @@
     "glob": "^7.0.5"
   },
   "name": "proof.io",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A simple behavior driven development test tool",
   "main": "proof.js",
   "directories": {
